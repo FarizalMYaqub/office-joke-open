@@ -33,6 +33,9 @@ def save(text, where):
         os.makedirs(folder, exist_ok=True)
     with open(where, "w", encoding="utf-8", newline="") as handle:
         handle.write(text)
+    with open(where, encoding="utf-8") as handle:
+        if handle.read() != text:
+            raise IOError("entry file does not match the joke")
 
 
 def main(argv):
